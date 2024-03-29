@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		DC76A1202BB782D10061F258 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A11F2BB782D10061F258 /* AppDelegate.swift */; };
-		DC76A1242BB782D10061F258 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1232BB782D10061F258 /* ViewController.swift */; };
+		DC76A1242BB782D10061F258 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1232BB782D10061F258 /* SearchViewController.swift */; };
 		DC76A1272BB782D10061F258 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC76A1252BB782D10061F258 /* Main.storyboard */; };
 		DC76A1292BB782D20061F258 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC76A1282BB782D20061F258 /* Assets.xcassets */; };
 		DC76A12C2BB782D20061F258 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC76A12A2BB782D20061F258 /* LaunchScreen.storyboard */; };
 		DC76A1372BB782D20061F258 /* SearchGithubRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1362BB782D20061F258 /* SearchGithubRepositoryTests.swift */; };
+		DC76A1572BB78A690061F258 /* ReactiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1562BB78A690061F258 /* ReactiveViewModel.swift */; };
+		DC76A1592BB78A7F0061F258 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1582BB78A7F0061F258 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +37,7 @@
 /* Begin PBXFileReference section */
 		DC76A11C2BB782D10061F258 /* SearchGithubRepository.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchGithubRepository.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC76A11F2BB782D10061F258 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DC76A1232BB782D10061F258 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DC76A1232BB782D10061F258 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DC76A1262BB782D10061F258 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC76A1282BB782D20061F258 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC76A12B2BB782D20061F258 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +45,8 @@
 		DC76A1322BB782D20061F258 /* SearchGithubRepositoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchGithubRepositoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC76A1362BB782D20061F258 /* SearchGithubRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGithubRepositoryTests.swift; sourceTree = "<group>"; };
 		DC76A13C2BB782D20061F258 /* SearchGithubRepositoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchGithubRepositoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC76A1562BB78A690061F258 /* ReactiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveViewModel.swift; sourceTree = SOURCE_ROOT; };
+		DC76A1582BB78A7F0061F258 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,11 +96,10 @@
 		DC76A11E2BB782D10061F258 /* SearchGithubRepository */ = {
 			isa = PBXGroup;
 			children = (
+				DC76A14F2BB786390061F258 /* Common */,
+				DC76A1532BB787EE0061F258 /* Scenes */,
+				DC76A1522BB787D60061F258 /* Resources */,
 				DC76A11F2BB782D10061F258 /* AppDelegate.swift */,
-				DC76A1232BB782D10061F258 /* ViewController.swift */,
-				DC76A1252BB782D10061F258 /* Main.storyboard */,
-				DC76A1282BB782D20061F258 /* Assets.xcassets */,
-				DC76A12A2BB782D20061F258 /* LaunchScreen.storyboard */,
 				DC76A12D2BB782D20061F258 /* Info.plist */,
 			);
 			path = SearchGithubRepository;
@@ -108,6 +111,65 @@
 				DC76A1362BB782D20061F258 /* SearchGithubRepositoryTests.swift */,
 			);
 			path = SearchGithubRepositoryTests;
+			sourceTree = "<group>";
+		};
+		DC76A14F2BB786390061F258 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1512BB786B10061F258 /* Protocol */,
+				DC76A1502BB786A40061F258 /* ViewController */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DC76A1502BB786A40061F258 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1582BB78A7F0061F258 /* BaseViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DC76A1512BB786B10061F258 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1562BB78A690061F258 /* ReactiveViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DC76A1522BB787D60061F258 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1542BB7881A0061F258 /* Storyboards */,
+				DC76A1282BB782D20061F258 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DC76A1532BB787EE0061F258 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1552BB788440061F258 /* Search */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		DC76A1542BB7881A0061F258 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1252BB782D10061F258 /* Main.storyboard */,
+				DC76A12A2BB782D20061F258 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		DC76A1552BB788440061F258 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1232BB782D10061F258 /* SearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,7 +303,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC76A1242BB782D10061F258 /* ViewController.swift in Sources */,
+				DC76A1572BB78A690061F258 /* ReactiveViewModel.swift in Sources */,
+				DC76A1592BB78A7F0061F258 /* BaseViewController.swift in Sources */,
+				DC76A1242BB782D10061F258 /* SearchViewController.swift in Sources */,
 				DC76A1202BB782D10061F258 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
