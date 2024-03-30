@@ -39,6 +39,22 @@ final class CoreDataManager {
     func read() -> [RecentSearch] {
         return try! context.fetch(results)
     }
+    
+    func delete(searchWord: RecentSearch) {
+        context.delete(searchWord)
+        
+        save()
+    }
+    
+    func deleteAll() {
+        guard let searchWords = try? context.fetch(results) else { return }
+        
+        for word in searchWords {
+            context.delete(word)
+        }
+
+        save()
+    }
 }
 
 extension CoreDataManager {
