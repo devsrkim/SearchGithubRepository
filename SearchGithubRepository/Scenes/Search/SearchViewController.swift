@@ -11,6 +11,7 @@ final class SearchViewController: BaseViewController {
     
     private lazy var searchController = UISearchController(searchResultsController: nil).then {
         $0.searchBar.placeholder = "저장소 검색"
+        $0.searchBar.delegate = self
     }
 
     private let viewModel: SearchViewModel
@@ -54,3 +55,10 @@ extension SearchViewController {
     }
 }
 
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        
+        viewModel.input.createRecentSearchWord.accept(searchText)
+    }
+}
