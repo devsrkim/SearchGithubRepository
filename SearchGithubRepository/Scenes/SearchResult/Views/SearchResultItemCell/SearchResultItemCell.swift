@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
 
 final class SearchResultItemCell: UITableViewCell {
     private let thumnailImageView = UIImageView().then {
@@ -19,14 +20,16 @@ final class SearchResultItemCell: UITableViewCell {
     private let titleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         $0.textColor = .black
-        $0.text = "Swift"
     }
     
     private let descriptionLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .darkGray
-        $0.text = "iOS-Swift-Developers"
     }
+    
+    private var viewModel: SearchResultItemCellViewModel?
+
+    private var disposeBag = DisposeBag()
     
     override init(
         style: UITableViewCell.CellStyle,
@@ -42,6 +45,15 @@ final class SearchResultItemCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
+    func configureViewModel(_ viewModel: SearchResultItemCellViewModel) {
+        self.viewModel = viewModel
+        
+        bindViewModel()
+        
+        viewModel.input.setupData.accept(())
     }
 }
 
@@ -62,8 +74,8 @@ extension SearchResultItemCell {
         titleLabel.snp.makeConstraints {
             $0.leading.equalTo(thumnailImageView.snp.trailing).offset(10)
             $0.trailing.equalToSuperview()
-            $0.top.equalTo(10)
-            $0.height.equalTo(30)
+            $0.top.equalTo(5)
+            $0.height.equalTo(24)
         }
         
         contentView.addSubview(descriptionLabel)
@@ -72,6 +84,18 @@ extension SearchResultItemCell {
             $0.top.equalTo(titleLabel.snp.bottom).offset(6)
             $0.height.equalTo(20)
         }
+    }
+    
+    private func bindViewModel() {
+        guard let viewModel = viewModel else { return }
+        
+        viewModel.output.setTitle
+            .bind(to: titleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.setDescription
+            .bind(to: descriptionLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 }
 

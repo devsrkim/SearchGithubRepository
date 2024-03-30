@@ -43,4 +43,9 @@ final class SearchViewModel: ReactiveViewModel {
 
         return viewModel
     }
+    
+    func makeSearchResultViewModel() -> SearchResultViewModel {
+        let viewModel = SearchResultViewModel()
+        return viewModel
+    }
 }

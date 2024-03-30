@@ -9,7 +9,9 @@ import UIKit
 
 final class SearchViewController: BaseViewController {
     
-    private lazy var searchController = UISearchController(searchResultsController: SearchResultViewController()).then {
+    private lazy var searchController = UISearchController(
+        searchResultsController: SearchResultViewController(viewModel: viewModel.makeSearchResultViewModel())
+    ).then {
         $0.searchBar.placeholder = "저장소 검색"
         $0.searchBar.delegate = self
     }
