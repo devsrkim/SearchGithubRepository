@@ -17,6 +17,7 @@ final class SearchResultViewModel: ReactiveViewModel {
     
     struct Output {
         let setSearchResultList = PublishRelay<[SearchResultSectionModel]>()
+        let routeToWebView = PublishRelay<String>()
         let errorMessage = PublishRelay<Error?>()
     }
     
@@ -58,5 +59,15 @@ final class SearchResultViewModel: ReactiveViewModel {
             }
             .bind(to: output.setSearchResultList)
             .disposed(by: disposeBag)
+    }
+    
+    func makeSearchResultItemCellViewModel(repository: RepositoryModel) -> SearchResultItemCellViewModel {
+        let viewModel = SearchResultItemCellViewModel(repository: repository)
+        
+        viewModel.output.didTapCell
+            .bind(to: output.routeToWebView)
+            .disposed(by: disposeBag)
+        
+        return viewModel
     }
 }

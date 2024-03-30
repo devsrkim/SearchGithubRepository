@@ -14,12 +14,14 @@ final class SearchResultItemCellViewModel: ReactiveViewModel {
 
     struct Input {
         let setupData = PublishRelay<Void>()
+        let didTapCell = PublishRelay<Void>()
     }
     
     struct Output {
         let setTitle = PublishRelay<String>()
         let setDescription = PublishRelay<String>()
         let setThumbnailImage = PublishRelay<UIImage?>()
+        let didTapCell = PublishRelay<String>()
     }
     
     let input = Input()
@@ -60,6 +62,12 @@ final class SearchResultItemCellViewModel: ReactiveViewModel {
                     }
                 }
             })
+            .disposed(by: disposeBag)
+        
+        input.didTapCell
+            .withUnretained(self)
+            .map { $0.0.repository.repoURL }
+            .bind(to: output.didTapCell)
             .disposed(by: disposeBag)
     }
 }

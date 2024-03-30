@@ -11,4 +11,5 @@ struct RepositoryModel {
     let title: String
     let description: String
     let imageURL: String
+    let repoURL: String
 }

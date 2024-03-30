@@ -26,10 +26,11 @@ final class SearchResultViewController: BaseViewController {
         let repository = RepositoryModel(
             title: item.name,
             description: item.owner.description,
-            imageURL: item.owner.thumbnailURL
+            imageURL: item.owner.thumbnailURL,
+            repoURL: item.url
         )
         
-        let cellViewModel = SearchResultItemCellViewModel(repository: repository)
+        let cellViewModel = self.viewModel.makeSearchResultItemCellViewModel(repository: repository)
         cell.configureViewModel(cellViewModel)
         
         return cell
@@ -67,5 +68,13 @@ extension SearchResultViewController {
         viewModel.output.setSearchResultList
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        viewModel.output.routeToWebView
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(with: self, onNext: { owner, url in
+                let webViewController = WebViewController(loadURL: url)
+                owner.presentingViewController?.navigationController?.pushViewController(webViewController, animated: false)
+            })
+            .disposed(by: disposeBag)
+    }
     }
 }

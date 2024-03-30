@@ -42,6 +42,7 @@
 		DC76A1BE2BB7FD200061F258 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1BD2BB7FD200061F258 /* NetworkError.swift */; };
 		DC76A1CC2BB85E050061F258 /* ImageLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1CB2BB85E050061F258 /* ImageLoadManager.swift */; };
 		DC76A1CF2BB85EB70061F258 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = DC76A1CE2BB85EB70061F258 /* SDWebImage */; };
+		DC76A1D22BB86CFE0061F258 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1D12BB86CFE0061F258 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		DC76A1BB2BB7F6990061F258 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		DC76A1BD2BB7FD200061F258 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DC76A1CB2BB85E050061F258 /* ImageLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadManager.swift; sourceTree = "<group>"; };
+		DC76A1D12BB86CFE0061F258 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 		DC76A1532BB787EE0061F258 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				DC76A1D02BB86CEE0061F258 /* WebView */,
 				DC76A1932BB7B5760061F258 /* SearchResult */,
 				DC76A1552BB788440061F258 /* Search */,
 				DC76A1722BB790D70061F258 /* RecentSearch */,
@@ -406,6 +409,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		DC76A1D02BB86CEE0061F258 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1D12BB86CFE0061F258 /* WebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -555,6 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC76A1BC2BB7F6990061F258 /* NetworkManager.swift in Sources */,
+				DC76A1D22BB86CFE0061F258 /* WebViewController.swift in Sources */,
 				DC76A1BA2BB7F6680061F258 /* SearchAPI.swift in Sources */,
 				DC76A19D2BB7E19B0061F258 /* SearchResultSectionModel.swift in Sources */,
 				DC76A1792BB7927D0061F258 /* RecentSearchWordCell.swift in Sources */,

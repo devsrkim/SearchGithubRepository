@@ -31,6 +31,8 @@ final class SearchResultItemCell: UITableViewCell {
 
     private var disposeBag = DisposeBag()
     
+    private let tapGesture = UITapGestureRecognizer()
+    
     override init(
         style: UITableViewCell.CellStyle,
         reuseIdentifier: String?
@@ -52,6 +54,7 @@ final class SearchResultItemCell: UITableViewCell {
         self.viewModel = viewModel
         
         bindViewModel()
+        bindUI()
         
         viewModel.input.setupData.accept(())
     }
@@ -84,6 +87,8 @@ extension SearchResultItemCell {
             $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.height.equalTo(20)
         }
+        
+        contentView.addGestureRecognizer(tapGesture)
     }
     
     private func bindViewModel() {
@@ -99,6 +104,15 @@ extension SearchResultItemCell {
         
         viewModel.output.setThumbnailImage
             .bind(to: thumnailImageView.rx.image)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindUI() {
+        guard let viewModel = viewModel else { return }
+        
+        tapGesture.rx.event
+            .map { _ in }
+            .bind(to: viewModel.input.didTapCell)
             .disposed(by: disposeBag)
     }
 }

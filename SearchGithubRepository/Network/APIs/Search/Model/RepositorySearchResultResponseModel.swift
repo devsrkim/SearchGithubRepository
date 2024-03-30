@@ -19,6 +19,12 @@ struct RepositorySearchResultResponseModel: Codable {
     struct Repository: Codable {
         let name: String
         let owner: Owner
+        let url: String
+        
+        enum CodingKeys: String, CodingKey {
+            case name, owner
+            case url = "html_url"
+        }
         
         struct Owner: Codable {
             let thumbnailURL: String
