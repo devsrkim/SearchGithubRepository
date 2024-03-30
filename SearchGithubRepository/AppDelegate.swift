@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let searchViewController = SearchViewController()
+        let searchViewController = SearchViewController(viewModel: SearchViewModel())
         window?.rootViewController = UINavigationController(rootViewController: searchViewController)
         window?.makeKeyAndVisible()
         

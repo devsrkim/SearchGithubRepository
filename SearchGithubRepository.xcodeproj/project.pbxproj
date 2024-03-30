@@ -19,6 +19,7 @@
 		DC76A1692BB78DE50061F258 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DC76A1682BB78DE50061F258 /* RxSwift */; };
 		DC76A16C2BB78E560061F258 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DC76A16B2BB78E560061F258 /* SnapKit */; };
 		DC76A16F2BB78E610061F258 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = DC76A16E2BB78E610061F258 /* Then */; };
+		DC76A1712BB78EBD0061F258 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1702BB78EBD0061F258 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		DC76A13C2BB782D20061F258 /* SearchGithubRepositoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchGithubRepositoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC76A1562BB78A690061F258 /* ReactiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveViewModel.swift; sourceTree = SOURCE_ROOT; };
 		DC76A1582BB78A7F0061F258 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		DC76A1702BB78EBD0061F258 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				DC76A1232BB782D10061F258 /* SearchViewController.swift */,
+				DC76A1702BB78EBD0061F258 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC76A1572BB78A690061F258 /* ReactiveViewModel.swift in Sources */,
+				DC76A1712BB78EBD0061F258 /* SearchViewModel.swift in Sources */,
 				DC76A1592BB78A7F0061F258 /* BaseViewController.swift in Sources */,
 				DC76A1242BB782D10061F258 /* SearchViewController.swift in Sources */,
 				DC76A1202BB782D10061F258 /* AppDelegate.swift in Sources */,
