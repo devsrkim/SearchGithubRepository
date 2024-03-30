@@ -46,6 +46,7 @@ final class RecentSearchWordCell: UITableViewCell {
         self.viewModel = viewModel
         
         bindViewModel()
+        bindUI()
         
         viewModel.input.setupData.accept(())
     }
@@ -78,6 +79,14 @@ extension RecentSearchWordCell {
         
         viewModel.output.setSearchText
             .bind(to: searchTextLabel.rx.text)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindUI() {
+        guard let viewModel = viewModel else { return }
+        
+        deleteButton.rx.tap
+            .bind(to: viewModel.input.didTapDeleteButton)
             .disposed(by: disposeBag)
     }
 }

@@ -64,6 +64,16 @@ final class RecentSearchViewModel: ReactiveViewModel {
         searchWord: RecentSearch
     ) -> RecentSearchWordCellViewModel {
         let viewModel = RecentSearchWordCellViewModel(searchWord: searchWord)
+        
+        viewModel.output.didTapDeleteButton
+            .withUnretained(self)
+            .map { owner, searchWord in
+                CoreDataManager.shared.delete(searchWord: searchWord)
+                owner.searchWordList = CoreDataManager.shared.read()
+            }
+            .bind(to: output.setSearchWordList)
+            .disposed(by: disposeBag)
+        
         return viewModel
     }
 }

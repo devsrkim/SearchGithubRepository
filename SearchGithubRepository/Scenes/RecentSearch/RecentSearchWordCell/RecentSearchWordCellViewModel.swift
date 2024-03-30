@@ -13,10 +13,12 @@ final class RecentSearchWordCellViewModel: ReactiveViewModel {
     
     struct Input {
         let setupData = PublishRelay<Void>()
+        let didTapDeleteButton = PublishRelay<Void>()
     }
     
     struct Output {
         let setSearchText = PublishRelay<String>()
+        let didTapDeleteButton = PublishRelay<RecentSearch>()
     }
     
     let input = Input()
@@ -37,6 +39,12 @@ final class RecentSearchWordCellViewModel: ReactiveViewModel {
             .withUnretained(self)
             .compactMap { $0.0.searchWord.searchText }
             .bind(to: output.setSearchText)
+            .disposed(by: disposeBag)
+        
+        input.didTapDeleteButton
+            .withUnretained(self)
+            .map { $0.0.searchWord }
+            .bind(to: output.didTapDeleteButton)
             .disposed(by: disposeBag)
     }
 }
