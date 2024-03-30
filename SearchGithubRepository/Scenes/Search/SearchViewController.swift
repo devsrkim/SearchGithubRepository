@@ -34,6 +34,7 @@ final class SearchViewController: BaseViewController {
 extension SearchViewController {
     private func setupUI() {
         setupNavigationBar()
+        setupRecentSearchView()
     }
     
     private func setupNavigationBar() {
@@ -41,6 +42,15 @@ extension SearchViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.searchController = searchController
+    }
+    
+    private func setupRecentSearchView() {
+        let recentSearchViewController = RecentSearchViewController(
+            viewModel: viewModel.makeRecentSearchViewModel()
+        )
+        addChild(recentSearchViewController)
+        view.addSubview(recentSearchViewController.view)
+        recentSearchViewController.didMove(toParent: self)
     }
 }
 

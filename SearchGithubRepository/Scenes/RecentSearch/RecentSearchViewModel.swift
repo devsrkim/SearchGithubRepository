@@ -1,5 +1,5 @@
 //
-//  SearchViewModel.swift
+//  RecentSearchViewModel.swift
 //  SearchGithubRepository
 //
 //  Created by srkim on 2024/03/30.
@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class SearchViewModel: ReactiveViewModel {
+final class RecentSearchViewModel: ReactiveViewModel {
     
     struct Input { }
     
@@ -26,11 +26,5 @@ final class SearchViewModel: ReactiveViewModel {
     
     func transform() {
         
-    }
-    
-    func makeRecentSearchViewModel() -> RecentSearchViewModel {
-        let viewModel = RecentSearchViewModel()
-
-        return viewModel
     }
 }
