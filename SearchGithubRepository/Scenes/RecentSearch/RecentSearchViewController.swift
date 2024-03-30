@@ -12,6 +12,8 @@ final class RecentSearchViewController: BaseViewController {
     private lazy var tableView = UITableView().then {
         $0.register(RecentSearchWordCell.self, forCellReuseIdentifier: "RecentSearchWordCell")
         $0.tableFooterView = footerView
+        $0.delegate = self
+        $0.dataSource = self
         $0.rowHeight = 35
         $0.separatorStyle = .none
         $0.backgroundColor = .white
@@ -46,9 +48,11 @@ final class RecentSearchViewController: BaseViewController {
         super.viewDidLoad()
         
         setupUI()
+        bindViewModel()
     }
 }
 
+// MARK: setupUI
 extension RecentSearchViewController {
     private func setupUI() {
         let titleLabel = UILabel().then {
@@ -89,5 +93,42 @@ extension RecentSearchViewController {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(1)
         }
+    }
+    
+    private func showDeleteAllButton() {
+        deleteAllButton.isHidden = viewModel.searchWordList.isEmpty
+        bottomLine.isHidden = deleteAllButton.isHidden
+    }
+}
+
+// MARK: bind
+extension RecentSearchViewController {
+    private func bindViewModel() {
+        viewModel.output.setSearchWordList
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(with: self, onNext: { owner, _ in
+                owner.tableView.reloadData()
+                owner.showDeleteAllButton()
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension RecentSearchViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = viewModel.searchWordList.count
+        return count > 10 ? 10 : count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecentSearchWordCell", for: indexPath) as? RecentSearchWordCell else {
+            return UITableViewCell()
+        }
+        
+        let searchWord = viewModel.searchWordList[indexPath.row]
+        let cellViewModel = viewModel.makeRecentSearchWordCellViewModel(searchWord: searchWord)
+        cell.configureViewModel(cellViewModel)
+        
+        return cell
     }
 }

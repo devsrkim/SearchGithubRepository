@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
 
 final class RecentSearchWordCell: UITableViewCell {
     private lazy var searchTextLabel = UILabel().then {
@@ -19,6 +20,10 @@ final class RecentSearchWordCell: UITableViewCell {
         $0.setImage(UIImage.init(systemName: "xmark.circle.fill"), for: .normal)
         $0.tintColor = .lightGray
     }
+    
+    private var viewModel: RecentSearchWordCellViewModel?
+
+    private var disposeBag = DisposeBag()
     
     override init(
         style: UITableViewCell.CellStyle,
@@ -34,8 +39,16 @@ final class RecentSearchWordCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
     
+    func configureViewModel(_ viewModel: RecentSearchWordCellViewModel) {
+        self.viewModel = viewModel
+        
+        bindViewModel()
+        
+        viewModel.input.setupData.accept(())
+    }
 }
 
 extension RecentSearchWordCell {
@@ -58,5 +71,13 @@ extension RecentSearchWordCell {
             $0.centerY.equalToSuperview()
             $0.height.equalTo(25)
         }
+    }
+    
+    private func bindViewModel() {
+        guard let viewModel = viewModel else { return }
+        
+        viewModel.output.setSearchText
+            .bind(to: searchTextLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 }

@@ -40,4 +40,11 @@ final class RecentSearchViewModel: ReactiveViewModel {
             .bind(to: output.setSearchWordList)
             .disposed(by: disposeBag)
     }
+    
+    func makeRecentSearchWordCellViewModel(
+        searchWord: RecentSearch
+    ) -> RecentSearchWordCellViewModel {
+        let viewModel = RecentSearchWordCellViewModel(searchWord: searchWord)
+        return viewModel
+    }
 }
