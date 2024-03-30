@@ -214,8 +214,8 @@
 		DC76A1552BB788440061F258 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				DC76A1232BB782D10061F258 /* SearchViewController.swift */,
-				DC76A1702BB78EBD0061F258 /* SearchViewModel.swift */,
+				DC76A1B32BB7F5110061F258 /* ViewModels */,
+				DC76A1B42BB7F51A0061F258 /* ViewControllers */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -223,10 +223,9 @@
 		DC76A1722BB790D70061F258 /* RecentSearch */ = {
 			isa = PBXGroup;
 			children = (
-				DC76A1832BB79C8A0061F258 /* RecentSearchEmptyCell */,
-				DC76A1772BB792690061F258 /* RecentSearchWordCell */,
-				DC76A1732BB790F50061F258 /* RecentSearchViewController.swift */,
-				DC76A1752BB791080061F258 /* RecentSearchViewModel.swift */,
+				DC76A1B02BB7F4E60061F258 /* Views */,
+				DC76A1B22BB7F4FB0061F258 /* ViewModels */,
+				DC76A1B12BB7F4F20061F258 /* ViewControllers */,
 			);
 			path = RecentSearch;
 			sourceTree = "<group>";
@@ -347,6 +346,47 @@
 				DC76A1AA2BB7EC2D0061F258 /* SearchResultViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DC76A1B02BB7F4E60061F258 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1832BB79C8A0061F258 /* RecentSearchEmptyCell */,
+				DC76A1772BB792690061F258 /* RecentSearchWordCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DC76A1B12BB7F4F20061F258 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1732BB790F50061F258 /* RecentSearchViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DC76A1B22BB7F4FB0061F258 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1752BB791080061F258 /* RecentSearchViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DC76A1B32BB7F5110061F258 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1702BB78EBD0061F258 /* SearchViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DC76A1B42BB7F51A0061F258 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1232BB782D10061F258 /* SearchViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -31,7 +31,20 @@ final class SearchResultViewModel: ReactiveViewModel {
     func transform() {
         input.setupData
             .map {
-                return []
+                return [
+                    SearchResultSectionModel(
+                        identity: .list,
+                        items: [
+                            RepositorySearchResultResponseModel.Repository(
+                                name: "Swift",
+                                owner: RepositorySearchResultResponseModel.Repository.Owner(
+                                    thumbnailURL: "https://avatars.githubusercontent.com/u/10639145?v=4",
+                                    description: "apple"
+                                )
+                            )
+                        ]
+                    )
+                ]
             }
             .bind(to: output.setSearchResultList)
             .disposed(by: disposeBag)
