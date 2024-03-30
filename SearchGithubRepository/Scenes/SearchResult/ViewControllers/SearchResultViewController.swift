@@ -13,7 +13,7 @@ final class SearchResultViewController: BaseViewController {
     
     private let tableView = UITableView().then {
         $0.register(SearchResultItemCell.self, forCellReuseIdentifier: "SearchResultItemCell")
-        $0.rowHeight = 60
+        $0.rowHeight = 80
         $0.separatorStyle = .none
         $0.backgroundColor = .white
     }
@@ -58,8 +58,7 @@ extension SearchResultViewController {
     private func setupUI() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.top.equalToSuperview()
+            $0.leading.trailing.top.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }

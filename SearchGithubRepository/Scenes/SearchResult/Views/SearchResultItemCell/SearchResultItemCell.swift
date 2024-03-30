@@ -13,12 +13,12 @@ import RxSwift
 final class SearchResultItemCell: UITableViewCell {
     private let thumnailImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.layer.cornerRadius = 30
+        $0.layer.cornerRadius = 20
         $0.clipsToBounds = true
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         $0.textColor = .black
     }
     
@@ -65,23 +65,23 @@ extension SearchResultItemCell {
         
         contentView.addSubview(thumnailImageView)
         thumnailImageView.snp.makeConstraints {
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(20)
             $0.centerY.equalToSuperview()
             $0.size.equalTo(40)
         }
         
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.leading.equalTo(thumnailImageView.snp.trailing).offset(10)
-            $0.trailing.equalToSuperview()
-            $0.top.equalTo(5)
+            $0.leading.equalTo(thumnailImageView.snp.trailing).offset(15)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.top.equalTo(15)
             $0.height.equalTo(24)
         }
         
         contentView.addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(6)
+            $0.leading.trailing.equalTo(titleLabel)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.height.equalTo(20)
         }
     }
@@ -95,6 +95,10 @@ extension SearchResultItemCell {
         
         viewModel.output.setDescription
             .bind(to: descriptionLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.setThumbnailImage
+            .bind(to: thumnailImageView.rx.image)
             .disposed(by: disposeBag)
     }
 }

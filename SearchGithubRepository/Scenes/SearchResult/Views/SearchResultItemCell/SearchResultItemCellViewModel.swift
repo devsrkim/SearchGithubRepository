@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import UIKit
 
 final class SearchResultItemCellViewModel: ReactiveViewModel {
 
@@ -18,6 +19,7 @@ final class SearchResultItemCellViewModel: ReactiveViewModel {
     struct Output {
         let setTitle = PublishRelay<String>()
         let setDescription = PublishRelay<String>()
+        let setThumbnailImage = PublishRelay<UIImage?>()
     }
     
     let input = Input()
@@ -44,6 +46,20 @@ final class SearchResultItemCellViewModel: ReactiveViewModel {
             .withUnretained(self)
             .map { $0.0.repository.description }
             .bind(to: output.setDescription)
+            .disposed(by: disposeBag)
+        
+        input.setupData
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                let url = owner.repository.imageURL
+                ImageLoadManager.shared.loadImage(url: url) { result in
+                    switch result {
+                    case let .success(image):
+                        owner.output.setThumbnailImage.accept(image)
+                    case .fail: break
+                    }
+                }
+            })
             .disposed(by: disposeBag)
     }
 }
