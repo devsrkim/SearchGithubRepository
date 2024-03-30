@@ -14,6 +14,7 @@ final class RecentSearchViewModel: ReactiveViewModel {
     struct Input {
         let setupData = PublishRelay<Void>()
         let createRecentSearchWord = PublishRelay<String>()
+        let deleteAllSearchWord = PublishRelay<Void>()
     }
     
     struct Output {
@@ -44,6 +45,15 @@ final class RecentSearchViewModel: ReactiveViewModel {
             .withUnretained(self)
             .map { owner, searchText in
                 CoreDataManager.shared.create(searchText: searchText)
+                owner.searchWordList = CoreDataManager.shared.read()
+            }
+            .bind(to: output.setSearchWordList)
+            .disposed(by: disposeBag)
+        
+        input.deleteAllSearchWord
+            .withUnretained(self)
+            .map { owner, _ in
+                CoreDataManager.shared.deleteAll()
                 owner.searchWordList = CoreDataManager.shared.read()
             }
             .bind(to: output.setSearchWordList)

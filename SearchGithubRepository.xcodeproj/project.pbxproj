@@ -26,6 +26,7 @@
 		DC76A17C2BB7958C0061F258 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A17B2BB7958C0061F258 /* CoreDataManager.swift */; };
 		DC76A17F2BB7964E0061F258 /* Search.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC76A17D2BB7964E0061F258 /* Search.xcdatamodeld */; };
 		DC76A1822BB799690061F258 /* RecentSearchWordCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1812BB799690061F258 /* RecentSearchWordCellViewModel.swift */; };
+		DC76A1852BB79CA20061F258 /* RecentSearchEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1842BB79CA20061F258 /* RecentSearchEmptyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		DC76A17B2BB7958C0061F258 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DC76A17E2BB7964E0061F258 /* Search.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Search.xcdatamodel; sourceTree = "<group>"; };
 		DC76A1812BB799690061F258 /* RecentSearchWordCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchWordCellViewModel.swift; sourceTree = "<group>"; };
+		DC76A1842BB79CA20061F258 /* RecentSearchEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchEmptyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 		DC76A1722BB790D70061F258 /* RecentSearch */ = {
 			isa = PBXGroup;
 			children = (
+				DC76A1832BB79C8A0061F258 /* RecentSearchEmptyCell */,
 				DC76A1772BB792690061F258 /* RecentSearchWordCell */,
 				DC76A1732BB790F50061F258 /* RecentSearchViewController.swift */,
 				DC76A1752BB791080061F258 /* RecentSearchViewModel.swift */,
@@ -231,6 +234,14 @@
 				DC76A17D2BB7964E0061F258 /* Search.xcdatamodeld */,
 			);
 			path = DataModel;
+			sourceTree = "<group>";
+		};
+		DC76A1832BB79C8A0061F258 /* RecentSearchEmptyCell */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1842BB79CA20061F258 /* RecentSearchEmptyCell.swift */,
+			);
+			path = RecentSearchEmptyCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,6 +390,7 @@
 				DC76A1572BB78A690061F258 /* ReactiveViewModel.swift in Sources */,
 				DC76A1712BB78EBD0061F258 /* SearchViewModel.swift in Sources */,
 				DC76A1822BB799690061F258 /* RecentSearchWordCellViewModel.swift in Sources */,
+				DC76A1852BB79CA20061F258 /* RecentSearchEmptyCell.swift in Sources */,
 				DC76A17F2BB7964E0061F258 /* Search.xcdatamodeld in Sources */,
 				DC76A1592BB78A7F0061F258 /* BaseViewController.swift in Sources */,
 				DC76A1242BB782D10061F258 /* SearchViewController.swift in Sources */,

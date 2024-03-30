@@ -11,6 +11,7 @@ final class RecentSearchViewController: BaseViewController {
     
     private lazy var tableView = UITableView().then {
         $0.register(RecentSearchWordCell.self, forCellReuseIdentifier: "RecentSearchWordCell")
+        $0.register(RecentSearchEmptyCell.self, forCellReuseIdentifier: "RecentSearchEmptyCell")
         $0.tableFooterView = footerView
         $0.delegate = self
         $0.dataSource = self
@@ -49,6 +50,7 @@ final class RecentSearchViewController: BaseViewController {
         
         setupUI()
         bindViewModel()
+        bindUI()
         
         viewModel.input.setupData.accept(())
     }
@@ -114,15 +116,27 @@ extension RecentSearchViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    private func bindUI() {
+        deleteAllButton.rx.tap
+            .bind(to: viewModel.input.deleteAllSearchWord)
+            .disposed(by: disposeBag)
+    }
 }
 
 extension RecentSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = viewModel.searchWordList.count
-        return count > 10 ? 10 : count
+        return viewModel.searchWordList.isEmpty ? 1 : (count > 10 ? 10 : count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard !viewModel.searchWordList.isEmpty 
+        else {
+            let emptyCell = tableView.dequeueReusableCell(withIdentifier: "RecentSearchEmptyCell", for: indexPath)
+            return emptyCell
+        }
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecentSearchWordCell", for: indexPath) as? RecentSearchWordCell else {
             return UITableViewCell()
         }
