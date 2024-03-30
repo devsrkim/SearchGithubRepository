@@ -9,7 +9,7 @@ import UIKit
 
 final class SearchResultHeaderView: UITableViewHeaderFooterView {
     enum Constant {
-        static let height: CGFloat = 40
+        static let height: CGFloat = 45
     }
     
     private let countLabel = UILabel().then {
@@ -33,14 +33,12 @@ final class SearchResultHeaderView: UITableViewHeaderFooterView {
 
 extension SearchResultHeaderView {
     private func setupUI() {
-        self.do {
-            $0.backgroundColor = .white
-        }
+        contentView.backgroundColor = .white
 
         contentView.addSubview(countLabel)
         countLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().inset(15)
             $0.height.equalTo(20)
         }
     }

@@ -11,12 +11,15 @@ import RxDataSources
 final class SearchResultViewController: BaseViewController {
     typealias SectionDataSource = RxTableViewSectionedReloadDataSource<SearchResultSectionModel>
     
-    private let tableView = UITableView().then {
+    private lazy var tableView = UITableView().then {
         $0.register(SearchResultItemCell.self, forCellReuseIdentifier: "SearchResultItemCell")
+        $0.delegate = self
         $0.rowHeight = 80
         $0.separatorStyle = .none
         $0.backgroundColor = .white
     }
+    
+    private let headerView = SearchResultHeaderView()
     
     private lazy var dataSource = SectionDataSource(configureCell: { [weak self] _, tableView, indexPath, item -> UITableViewCell in
         guard let self = self,
@@ -68,6 +71,14 @@ extension SearchResultViewController {
         viewModel.output.setSearchResultList
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        viewModel.output.setTotalCount
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(with: self, onNext: { owner, totalCountString in
+                owner.headerView.configure(countString: totalCountString)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.output.routeToWebView
             .asDriver(onErrorDriveWith: .empty())
             .drive(with: self, onNext: { owner, url in
@@ -76,5 +87,14 @@ extension SearchResultViewController {
             })
             .disposed(by: disposeBag)
     }
+}
+
+extension SearchResultViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return SearchResultHeaderView.Constant.height
     }
 }

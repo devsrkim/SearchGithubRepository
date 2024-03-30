@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 final class SearchResultViewModel: ReactiveViewModel {
     
@@ -17,6 +18,7 @@ final class SearchResultViewModel: ReactiveViewModel {
     
     struct Output {
         let setSearchResultList = PublishRelay<[SearchResultSectionModel]>()
+        let setTotalCount = PublishRelay<String>()
         let routeToWebView = PublishRelay<String>()
         let errorMessage = PublishRelay<Error?>()
     }
@@ -46,6 +48,8 @@ final class SearchResultViewModel: ReactiveViewModel {
             .filterMap { owner, response -> FilterMap<[SearchResultSectionModel]> in
                 switch response {
                 case let .success(result):
+                    owner.output.setTotalCount.accept("\(result.totalCount.toDecimalStyle())개 저장소")
+                    
                     return .map([
                         SearchResultSectionModel(
                             identity: .list,
