@@ -27,6 +27,11 @@
 		DC76A17F2BB7964E0061F258 /* Search.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC76A17D2BB7964E0061F258 /* Search.xcdatamodeld */; };
 		DC76A1822BB799690061F258 /* RecentSearchWordCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1812BB799690061F258 /* RecentSearchWordCellViewModel.swift */; };
 		DC76A1852BB79CA20061F258 /* RecentSearchEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1842BB79CA20061F258 /* RecentSearchEmptyCell.swift */; };
+		DC76A18A2BB7A37E0061F258 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DC76A1892BB7A37E0061F258 /* Alamofire */; };
+		DC76A1952BB7B5A20061F258 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1942BB7B5A20061F258 /* SearchResultViewController.swift */; };
+		DC76A19A2BB7B8710061F258 /* SearchResultItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1992BB7B8710061F258 /* SearchResultItemCell.swift */; };
+		DC76A19D2BB7E19B0061F258 /* SearchResultSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A19C2BB7E19B0061F258 /* SearchResultSectionModel.swift */; };
+		DC76A1A22BB7E2A60061F258 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = DC76A1A12BB7E2A60061F258 /* RxDataSources */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +72,9 @@
 		DC76A17E2BB7964E0061F258 /* Search.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Search.xcdatamodel; sourceTree = "<group>"; };
 		DC76A1812BB799690061F258 /* RecentSearchWordCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchWordCellViewModel.swift; sourceTree = "<group>"; };
 		DC76A1842BB79CA20061F258 /* RecentSearchEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchEmptyCell.swift; sourceTree = "<group>"; };
+		DC76A1942BB7B5A20061F258 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		DC76A1992BB7B8710061F258 /* SearchResultItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultItemCell.swift; sourceTree = "<group>"; };
+		DC76A19C2BB7E19B0061F258 /* SearchResultSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSectionModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +82,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC76A18A2BB7A37E0061F258 /* Alamofire in Frameworks */,
 				DC76A16C2BB78E560061F258 /* SnapKit in Frameworks */,
 				DC76A1692BB78DE50061F258 /* RxSwift in Frameworks */,
+				DC76A1A22BB7E2A60061F258 /* RxDataSources in Frameworks */,
 				DC76A1672BB78DE50061F258 /* RxCocoa in Frameworks */,
 				DC76A16F2BB78E610061F258 /* Then in Frameworks */,
 			);
@@ -176,6 +186,7 @@
 		DC76A1532BB787EE0061F258 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				DC76A1932BB7B5760061F258 /* SearchResult */,
 				DC76A1552BB788440061F258 /* Search */,
 				DC76A1722BB790D70061F258 /* RecentSearch */,
 			);
@@ -244,6 +255,48 @@
 			path = RecentSearchEmptyCell;
 			sourceTree = "<group>";
 		};
+		DC76A1932BB7B5760061F258 /* SearchResult */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A19B2BB7E1620061F258 /* Models */,
+				DC76A19F2BB7E2490061F258 /* Views */,
+				DC76A19E2BB7E23B0061F258 /* ViewControllers */,
+			);
+			path = SearchResult;
+			sourceTree = "<group>";
+		};
+		DC76A1982BB7B8530061F258 /* SearchResultItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1992BB7B8710061F258 /* SearchResultItemCell.swift */,
+			);
+			path = SearchResultItemCell;
+			sourceTree = "<group>";
+		};
+		DC76A19B2BB7E1620061F258 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A19C2BB7E19B0061F258 /* SearchResultSectionModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DC76A19E2BB7E23B0061F258 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1942BB7B5A20061F258 /* SearchResultViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DC76A19F2BB7E2490061F258 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC76A1982BB7B8530061F258 /* SearchResultItemCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -265,6 +318,8 @@
 				DC76A1682BB78DE50061F258 /* RxSwift */,
 				DC76A16B2BB78E560061F258 /* SnapKit */,
 				DC76A16E2BB78E610061F258 /* Then */,
+				DC76A1892BB7A37E0061F258 /* Alamofire */,
+				DC76A1A12BB7E2A60061F258 /* RxDataSources */,
 			);
 			productName = SearchGithubRepository;
 			productReference = DC76A11C2BB782D10061F258 /* SearchGithubRepository.app */;
@@ -342,6 +397,8 @@
 				DC76A1652BB78DE50061F258 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				DC76A16A2BB78E560061F258 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				DC76A16D2BB78E610061F258 /* XCRemoteSwiftPackageReference "Then" */,
+				DC76A1882BB7A37E0061F258 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DC76A1A02BB7E2A60061F258 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = DC76A11D2BB782D10061F258 /* Products */;
 			projectDirPath = "";
@@ -386,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC76A19D2BB7E19B0061F258 /* SearchResultSectionModel.swift in Sources */,
 				DC76A1792BB7927D0061F258 /* RecentSearchWordCell.swift in Sources */,
 				DC76A1572BB78A690061F258 /* ReactiveViewModel.swift in Sources */,
 				DC76A1712BB78EBD0061F258 /* SearchViewModel.swift in Sources */,
@@ -396,8 +454,10 @@
 				DC76A1242BB782D10061F258 /* SearchViewController.swift in Sources */,
 				DC76A1742BB790F50061F258 /* RecentSearchViewController.swift in Sources */,
 				DC76A17C2BB7958C0061F258 /* CoreDataManager.swift in Sources */,
+				DC76A1952BB7B5A20061F258 /* SearchResultViewController.swift in Sources */,
 				DC76A1202BB782D10061F258 /* AppDelegate.swift in Sources */,
 				DC76A1762BB791080061F258 /* RecentSearchViewModel.swift in Sources */,
+				DC76A19A2BB7B8710061F258 /* SearchResultItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,6 +836,22 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		DC76A1882BB7A37E0061F258 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.0;
+			};
+		};
+		DC76A1A02BB7E2A60061F258 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -798,6 +874,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DC76A16D2BB78E610061F258 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		DC76A1892BB7A37E0061F258 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC76A1882BB7A37E0061F258 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		DC76A1A12BB7E2A60061F258 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC76A1A02BB7E2A60061F258 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 
