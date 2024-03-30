@@ -36,6 +36,10 @@
 		DC76A1AB2BB7EC2D0061F258 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1AA2BB7EC2D0061F258 /* SearchResultViewModel.swift */; };
 		DC76A1AD2BB7EE4B0061F258 /* SearchResultItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1AC2BB7EE4B0061F258 /* SearchResultItemCellViewModel.swift */; };
 		DC76A1AF2BB7EF700061F258 /* RepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1AE2BB7EF700061F258 /* RepositoryModel.swift */; };
+		DC76A1B82BB7F6310061F258 /* APISpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1B72BB7F6310061F258 /* APISpec.swift */; };
+		DC76A1BA2BB7F6680061F258 /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1B92BB7F6680061F258 /* SearchAPI.swift */; };
+		DC76A1BC2BB7F6990061F258 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1BB2BB7F6990061F258 /* NetworkManager.swift */; };
+		DC76A1BE2BB7FD200061F258 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC76A1BD2BB7FD200061F258 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +87,10 @@
 		DC76A1AA2BB7EC2D0061F258 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		DC76A1AC2BB7EE4B0061F258 /* SearchResultItemCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultItemCellViewModel.swift; sourceTree = "<group>"; };
 		DC76A1AE2BB7EF700061F258 /* RepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModel.swift; sourceTree = "<group>"; };
+		DC76A1B72BB7F6310061F258 /* APISpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISpec.swift; sourceTree = "<group>"; };
+		DC76A1B92BB7F6680061F258 /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
+		DC76A1BB2BB7F6990061F258 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		DC76A1BD2BB7FD200061F258 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				DC76A17B2BB7958C0061F258 /* CoreDataManager.swift */,
+				DC76A1BB2BB7F6990061F258 /* NetworkManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -312,6 +321,8 @@
 			isa = PBXGroup;
 			children = (
 				DC76A1A42BB7E49F0061F258 /* APIs */,
+				DC76A1B72BB7F6310061F258 /* APISpec.swift */,
+				DC76A1BD2BB7FD200061F258 /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -328,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				DC76A1A62BB7E4D10061F258 /* Model */,
+				DC76A1B92BB7F6680061F258 /* SearchAPI.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -535,16 +547,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC76A1BC2BB7F6990061F258 /* NetworkManager.swift in Sources */,
+				DC76A1BA2BB7F6680061F258 /* SearchAPI.swift in Sources */,
 				DC76A19D2BB7E19B0061F258 /* SearchResultSectionModel.swift in Sources */,
 				DC76A1792BB7927D0061F258 /* RecentSearchWordCell.swift in Sources */,
 				DC76A1AF2BB7EF700061F258 /* RepositoryModel.swift in Sources */,
 				DC76A1712BB78EBD0061F258 /* SearchViewModel.swift in Sources */,
 				DC76A1AB2BB7EC2D0061F258 /* SearchResultViewModel.swift in Sources */,
 				DC76A1822BB799690061F258 /* RecentSearchWordCellViewModel.swift in Sources */,
+				DC76A1BE2BB7FD200061F258 /* NetworkError.swift in Sources */,
 				DC76A1852BB79CA20061F258 /* RecentSearchEmptyCell.swift in Sources */,
 				DC76A1AD2BB7EE4B0061F258 /* SearchResultItemCellViewModel.swift in Sources */,
 				DC76A17F2BB7964E0061F258 /* Search.xcdatamodeld in Sources */,
 				DC76A1592BB78A7F0061F258 /* BaseViewController.swift in Sources */,
+				DC76A1B82BB7F6310061F258 /* APISpec.swift in Sources */,
 				DC76A1242BB782D10061F258 /* SearchViewController.swift in Sources */,
 				DC76A1742BB790F50061F258 /* RecentSearchViewController.swift in Sources */,
 				DC76A1A82BB7E5110061F258 /* RepositorySearchResultResponseModel.swift in Sources */,
