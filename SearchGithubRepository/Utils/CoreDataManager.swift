@@ -26,6 +26,19 @@ final class CoreDataManager {
             }
         }
     }
+    
+    func create(searchText: String) {
+        let recentSearch = RecentSearch(context: context)
+
+        recentSearch.date = Date()
+        recentSearch.searchText = searchText
+        
+        save()
+    }
+    
+    func read() -> [RecentSearch] {
+        return try! context.fetch(results)
+    }
 }
 
 extension CoreDataManager {
