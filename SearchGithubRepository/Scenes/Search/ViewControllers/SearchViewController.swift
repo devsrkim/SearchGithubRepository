@@ -62,5 +62,6 @@ extension SearchViewController: UISearchBarDelegate {
         guard let searchText = searchBar.text else { return }
         
         viewModel.input.createRecentSearchWord.accept(searchText)
+        viewModel.input.getSearchResultByText.accept(searchText)
     }
 }

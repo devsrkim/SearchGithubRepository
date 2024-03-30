@@ -51,8 +51,6 @@ final class SearchResultViewController: BaseViewController {
         
         setupUI()
         bindViewModel()
-        
-        viewModel.input.setupData.accept(())
     }
 }
 

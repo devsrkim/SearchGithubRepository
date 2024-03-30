@@ -12,11 +12,12 @@ import RxCocoa
 final class SearchResultViewModel: ReactiveViewModel {
     
     struct Input {
-        let setupData = PublishRelay<Void>()
+        let setupData = PublishRelay<String>()
     }
     
     struct Output {
         let setSearchResultList = PublishRelay<[SearchResultSectionModel]>()
+        let errorMessage = PublishRelay<Error?>()
     }
     
     let input = Input()
@@ -24,27 +25,36 @@ final class SearchResultViewModel: ReactiveViewModel {
     
     private let disposeBag = DisposeBag()
     
-    init() {
+    private let networkManager: NetworkManager<SearchAPI>
+    
+    init(networkManager: NetworkManager<SearchAPI> = .init()) {
+        self.networkManager = networkManager
+
         transform()
     }
     
     func transform() {
         input.setupData
-            .map {
-                return [
-                    SearchResultSectionModel(
-                        identity: .list,
-                        items: [
-                            RepositorySearchResultResponseModel.Repository(
-                                name: "Swift",
-                                owner: RepositorySearchResultResponseModel.Repository.Owner(
-                                    thumbnailURL: "https://avatars.githubusercontent.com/u/10639145?v=4",
-                                    description: "apple"
-                                )
-                            )
-                        ]
-                    )
-                ]
+            .withUnretained(self)
+            .flatMap { owner, searchWord -> Single<Result<RepositorySearchResultResponseModel, NetworkError>> in
+                return owner.networkManager.request(
+                    api: .getSearchResult(searchText: searchWord, page: 1)
+                )
+            }
+            .withUnretained(self)
+            .filterMap { owner, response -> FilterMap<[SearchResultSectionModel]> in
+                switch response {
+                case let .success(result):
+                    return .map([
+                        SearchResultSectionModel(
+                            identity: .list,
+                            items: result.items
+                        )
+                    ])
+                case let .failure(error):
+                    owner.output.errorMessage.accept(error)
+                    return .ignore
+                }
             }
             .bind(to: output.setSearchResultList)
             .disposed(by: disposeBag)

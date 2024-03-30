@@ -13,10 +13,12 @@ final class SearchViewModel: ReactiveViewModel {
     
     struct Input {
         let createRecentSearchWord = PublishRelay<String>()
+        let getSearchResultByText = PublishRelay<String>()
     }
     
     struct Output { 
         let createRecentSearchWord = PublishRelay<String>()
+        let getSearchResultByText = PublishRelay<String>()
     }
     
     let input = Input()
@@ -29,6 +31,10 @@ final class SearchViewModel: ReactiveViewModel {
     }
     
     func transform() {
+        input.getSearchResultByText
+            .bind(to: output.getSearchResultByText)
+            .disposed(by: disposeBag)
+
         input.createRecentSearchWord
             .bind(to: output.createRecentSearchWord)
             .disposed(by: disposeBag)
@@ -46,6 +52,11 @@ final class SearchViewModel: ReactiveViewModel {
     
     func makeSearchResultViewModel() -> SearchResultViewModel {
         let viewModel = SearchResultViewModel()
+        
+        output.getSearchResultByText
+            .bind(to: viewModel.input.setupData)
+            .disposed(by: disposeBag)
+        
         return viewModel
     }
 }
