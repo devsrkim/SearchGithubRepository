@@ -17,7 +17,9 @@ final class CoreDataManager {
         return persistentContainer.viewContext
     }
     
-    private let results = NSFetchRequest<RecentSearch>(entityName: "RecentSearch")
+    private let results = NSFetchRequest<RecentSearch>(entityName: "RecentSearch").then {
+        $0.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+    }
     
     init() {
         persistentContainer.loadPersistentStores { description, error in

@@ -49,6 +49,8 @@ final class RecentSearchViewController: BaseViewController {
         
         setupUI()
         bindViewModel()
+        
+        viewModel.input.setupData.accept(())
     }
 }
 

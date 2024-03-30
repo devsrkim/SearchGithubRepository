@@ -12,6 +12,7 @@ import RxCocoa
 final class RecentSearchViewModel: ReactiveViewModel {
     
     struct Input {
+        let setupData = PublishRelay<Void>()
         let createRecentSearchWord = PublishRelay<String>()
     }
     
@@ -31,6 +32,14 @@ final class RecentSearchViewModel: ReactiveViewModel {
     }
     
     func transform() {
+        input.setupData
+            .withUnretained(self)
+            .map { owner, _ in
+                owner.searchWordList = CoreDataManager.shared.read()
+            }
+            .bind(to: output.setSearchWordList)
+            .disposed(by: disposeBag)
+
         input.createRecentSearchWord
             .withUnretained(self)
             .map { owner, searchText in
