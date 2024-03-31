@@ -19,6 +19,7 @@ final class RecentSearchViewModel: ReactiveViewModel {
     
     struct Output {
         let setSearchWordList = PublishRelay<Void>()
+        let showSearchResult = PublishRelay<String>()
     }
     
     let input = Input()
@@ -72,6 +73,10 @@ final class RecentSearchViewModel: ReactiveViewModel {
                 owner.searchWordList = CoreDataManager.shared.read()
             }
             .bind(to: output.setSearchWordList)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.didTapSearchWord
+            .bind(to: output.showSearchResult)
             .disposed(by: disposeBag)
         
         return viewModel

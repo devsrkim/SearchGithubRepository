@@ -14,6 +14,7 @@ final class RecentSearchWordCell: UITableViewCell {
     private lazy var searchTextLabel = UILabel().then {
         $0.textColor = .darkGray
         $0.font = UIFont.systemFont(ofSize: 15)
+        $0.addGestureRecognizer(tapGesture)
     }
     
     private let deleteButton = UIButton().then {
@@ -24,6 +25,8 @@ final class RecentSearchWordCell: UITableViewCell {
     private var viewModel: RecentSearchWordCellViewModel?
 
     private var disposeBag = DisposeBag()
+    
+    private let tapGesture = UITapGestureRecognizer()
     
     override init(
         style: UITableViewCell.CellStyle,
@@ -72,6 +75,8 @@ extension RecentSearchWordCell {
             $0.centerY.equalToSuperview()
             $0.height.equalTo(25)
         }
+        
+        contentView.addGestureRecognizer(tapGesture)
     }
     
     private func bindViewModel() {
@@ -84,6 +89,11 @@ extension RecentSearchWordCell {
     
     private func bindUI() {
         guard let viewModel = viewModel else { return }
+        
+        tapGesture.rx.event
+            .map { _ in }
+            .bind(to: viewModel.input.didTapSearchWord)
+            .disposed(by: disposeBag)
         
         deleteButton.rx.tap
             .bind(to: viewModel.input.didTapDeleteButton)

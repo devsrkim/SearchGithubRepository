@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class SearchViewController: BaseViewController {
     
@@ -31,6 +32,7 @@ final class SearchViewController: BaseViewController {
         super.viewDidLoad()
         
         setupUI()
+        bindViewModel()
     }
 }
 
@@ -54,6 +56,15 @@ extension SearchViewController {
         addChild(recentSearchViewController)
         view.addSubview(recentSearchViewController.view)
         recentSearchViewController.didMove(toParent: self)
+    }
+    
+    private func bindViewModel() {
+        viewModel.output.showSearchResult
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(with: self, onNext: { owner, searchWord in
+                owner.viewModel.input.getSearchResultByText.accept(searchWord)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
