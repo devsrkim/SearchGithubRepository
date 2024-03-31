@@ -62,6 +62,8 @@ extension SearchViewController {
         viewModel.output.showSearchResult
             .asDriver(onErrorDriveWith: .empty())
             .drive(with: self, onNext: { owner, searchWord in
+                owner.searchController.isActive = true
+                owner.searchController.searchBar.searchTextField.text = searchWord
                 owner.viewModel.input.getSearchResultByText.accept(searchWord)
             })
             .disposed(by: disposeBag)
