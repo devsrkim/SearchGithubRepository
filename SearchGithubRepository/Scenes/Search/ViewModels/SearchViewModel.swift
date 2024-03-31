@@ -59,6 +59,7 @@ final class SearchViewModel: ReactiveViewModel {
         let viewModel = SearchResultViewModel()
         
         output.getSearchResultByText
+            .map { ($0, 1) }
             .bind(to: viewModel.input.setupData)
             .disposed(by: disposeBag)
         

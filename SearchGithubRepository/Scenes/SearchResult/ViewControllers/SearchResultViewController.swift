@@ -69,6 +69,14 @@ extension SearchResultViewController {
     
     private func bindViewModel() {
         viewModel.output.setSearchResultList
+            .withUnretained(self)
+            .do(afterNext: { owner, sectionModels in
+                if let sectionModel = sectionModels.first, sectionModel.items.count > 0, owner.viewModel.page == 1 {
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    owner.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+                }
+            })
+            .map { $0.1 }
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
@@ -86,6 +94,12 @@ extension SearchResultViewController {
                 owner.presentingViewController?.navigationController?.pushViewController(webViewController, animated: false)
             })
             .disposed(by: disposeBag)
+        
+        tableView.rx.willDisplayCell
+            .map { $0.indexPath }
+            .bind(to: viewModel.input.willDisplay)
+            .disposed(by: disposeBag)
+        
     }
 }
 
