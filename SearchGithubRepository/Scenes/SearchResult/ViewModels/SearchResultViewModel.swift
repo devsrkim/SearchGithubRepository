@@ -21,7 +21,8 @@ final class SearchResultViewModel: ReactiveViewModel {
         let setSearchResultList = PublishRelay<[SearchResultSectionModel]>()
         let setTotalCount = PublishRelay<String>()
         let routeToWebView = PublishRelay<String>()
-        let errorMessage = PublishRelay<Error?>()
+        let showIndicator = PublishRelay<Void>()
+        let hideIndicator = PublishRelay<Void>()
     }
     
     let input = Input()
@@ -46,6 +47,9 @@ final class SearchResultViewModel: ReactiveViewModel {
     func transform() {
         input.setupData
             .withUnretained(self)
+            .do(onNext: { owner, _ in
+                owner.output.showIndicator.accept(())
+            })
             .flatMap { owner, searchInfo -> Single<Result<RepositorySearchResultResponseModel, NetworkError>> in
                 owner.searchWord = searchInfo.searchWord
                 owner.page = searchInfo.page
@@ -55,6 +59,9 @@ final class SearchResultViewModel: ReactiveViewModel {
                 )
             }
             .withUnretained(self)
+            .do(onNext: { owner, _ in
+                owner.output.hideIndicator.accept(())
+            })
             .filterMap { owner, response -> FilterMap<[SearchResultSectionModel]> in
                 switch response {
                 case let .success(result):
@@ -71,7 +78,7 @@ final class SearchResultViewModel: ReactiveViewModel {
                         SearchResultSectionModel(identity: .list, items: owner.items)
                     ])
                 case let .failure(error):
-                    owner.output.errorMessage.accept(error)
+                    print(error)
                     return .ignore
                 }
             }

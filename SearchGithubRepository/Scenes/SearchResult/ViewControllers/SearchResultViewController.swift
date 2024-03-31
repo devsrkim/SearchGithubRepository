@@ -21,6 +21,8 @@ final class SearchResultViewController: BaseViewController {
     
     private let headerView = SearchResultHeaderView()
     
+    private let indicator = UIActivityIndicatorView()
+    
     private lazy var dataSource = SectionDataSource(configureCell: { [weak self] _, tableView, indexPath, item -> UITableViewCell in
         guard let self = self,
               let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultItemCell") as? SearchResultItemCell
@@ -65,6 +67,12 @@ extension SearchResultViewController {
             $0.leading.trailing.top.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+        
+        view.addSubview(indicator)
+        indicator.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(50)
+        }
     }
     
     private func bindViewModel() {
@@ -100,6 +108,21 @@ extension SearchResultViewController {
             .bind(to: viewModel.input.willDisplay)
             .disposed(by: disposeBag)
         
+        viewModel.output.showIndicator
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(with: self, onNext: { owner, url in
+                owner.indicator.isHidden = false
+                owner.indicator.startAnimating()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output.hideIndicator
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(with: self, onNext: { owner, url in
+                owner.indicator.stopAnimating()
+                owner.indicator.isHidden = true
+            })
+            .disposed(by: disposeBag)
     }
 }
 
